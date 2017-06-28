@@ -14,7 +14,7 @@ const app = {
   renderRemoveButton(text) {
     const button = document.createElement('button')
     button.textContent = (text)
-    button.className += 'removeButton'
+    button.className += 'button removeButton'
 
     //Add an event listener for this button
     button.addEventListener('click', function(ev) {
@@ -22,7 +22,7 @@ const app = {
       parent.parentNode.removeChild(parent)
 
       //Remove the flick from the array of flicks
-      app.flicks.splice((parent.id - 1), 1)
+      app.flicks.splice((parent.id), 1)
     })
 
     return button
@@ -32,16 +32,16 @@ const app = {
   renderLikeButton(text) {
     const button = document.createElement('button')
     button.textContent = (text) 
-    button.className += 'likeButton'
+    button.className += 'button likeButton'
 
     //Add an event listener for this button
     button.addEventListener('click', function(ev) {
       const parentElement = ev.target.parentElement
 
       //Change background color and button text
-      if (app.flicks[parentElement.id - 1].favorited) {
+      if (app.flicks[parentElement.id].favorited) {
         parentElement.style.backgroundColor = defaultBackgroundColor
-        app.flicks[parentElement.id - 1].favorited = false;
+        app.flicks[parentElement.id].favorited = false;
 
         //Change the button text
         for (let i = 0; i < parentElement.childNodes.length; i++){
@@ -52,7 +52,7 @@ const app = {
 
       } else {
         parentElement.style.backgroundColor = likedBackgroundColor
-        app.flicks[parentElement.id - 1].favorited = true;
+        app.flicks[parentElement.id].favorited = true;
 
         //Change the button text
         for (let i = 0; i < parentElement.childNodes.length; i++){
@@ -70,8 +70,9 @@ const app = {
     const item = document.createElement('li')
     item.textContent = flick.name
     item.id = flick.id
-    item.style.fontSize = '2rem';
-    item.style.backgroundColor = defaultBackgroundColor;
+    item.style.fontSize = '2rem'
+    item.style.backgroundColor = defaultBackgroundColor
+    item.style.borderRadius = '6px'
 
     //Add the Like Button the the li element
     item.appendChild(this.renderLikeButton('Like'))
@@ -90,7 +91,7 @@ const app = {
 
     const flick = {
       name: f.flickName.value,
-      id: this.max + 1,
+      id: this.max,
       favorited: false,
     }
 
