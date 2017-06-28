@@ -9,10 +9,24 @@ const app = {
       .addEventListener('submit', this.handleSubmit.bind(this))
   },
 
-  //Part 2 of Homework
-  renderButton(text){
+  renderRemoveButton(text) {
     const button = document.createElement('button')
-    button.textContent = (text + ' ') 
+    button.textContent = (text)
+    button.className += 'removeButton'
+
+    //Add an event listener for this button
+    button.addEventListener('click', function(ev) {
+      const parent = ev.target.parentElement      
+      parent.parentNode.removeChild(parent)
+    })
+
+    return button
+  },
+
+  //Part 2 of Homework
+  renderLikeButton(text) {
+    const button = document.createElement('button')
+    button.textContent = (text) 
     button.className += 'likeButton'
 
     //Add an event listener for this button
@@ -52,8 +66,11 @@ const app = {
     item.textContent = flick.name
     item.id = flick.id
 
-    //Add a button the the li elemebet
-    item.appendChild(this.renderButton('Like'))
+    //Add the Like Button the the li element
+    item.appendChild(this.renderLikeButton('Like'))
+
+    //Add the Remove Button to the li element
+    item.appendChild(this.renderRemoveButton('Remove'))
 
     return item
   },
