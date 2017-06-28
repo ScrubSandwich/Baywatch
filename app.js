@@ -1,7 +1,7 @@
 const app = {
   init(selectors) {
     this.flicks = []
-    this.max = 0
+    this.max = -1
     defaultBackgroundColor = 'white'
     likedBackgroundColor = 'grey'
     this.list = document.querySelector(selectors.listSelector)
@@ -11,6 +11,18 @@ const app = {
       .addEventListener('submit', this.handleSubmit.bind(this))
   },
 
+  getIndexOfFlick(parentElement) {
+    let index = -1
+
+    for (var i = 0; i < app.flicks.length; i++){
+      if (app.flicks[i].id === parseInt(parentElement.id)) {
+        index = i;
+      }
+    }
+
+    return index
+  },
+
   renderRemoveButton(text) {
     const button = document.createElement('button')
     button.textContent = (text)
@@ -18,11 +30,13 @@ const app = {
 
     //Add an event listener for this button
     button.addEventListener('click', function(ev) {
-      const parent = ev.target.parentElement      
+      const parent = ev.target.parentElement 
+      const index = app.getIndexOfFlick(parent)     
       parent.parentNode.removeChild(parent)
 
       //Remove the flick from the array of flicks
-      app.flicks.splice((parent.id), 1)
+      app.flicks.splice((index), 1)
+      app.max --
     })
 
     return button
@@ -37,11 +51,17 @@ const app = {
     //Add an event listener for this button
     button.addEventListener('click', function(ev) {
       const parentElement = ev.target.parentElement
+      console.log('like button clicked. parentElement id= ' + parentElement.id)
+      console.log(parentElement)
+
+      let index = app.getIndexOfFlick(parentElement)
+      console.log('parent element id: ' + parentElement.id)
+      console.log('parent element id array location: ' + index)
 
       //Change background color and button text
-      if (app.flicks[parentElement.id].favorited) {
+      if (app.flicks[index].favorited) {
         parentElement.style.backgroundColor = defaultBackgroundColor
-        app.flicks[parentElement.id].favorited = false;
+        app.flicks[index].favorited = false;
 
         //Change the button text
         for (let i = 0; i < parentElement.childNodes.length; i++){
@@ -52,7 +72,7 @@ const app = {
 
       } else {
         parentElement.style.backgroundColor = likedBackgroundColor
-        app.flicks[parentElement.id].favorited = true;
+        app.flicks[index].favorited = true;
 
         //Change the button text
         for (let i = 0; i < parentElement.childNodes.length; i++){
@@ -88,6 +108,7 @@ const app = {
     ev.preventDefault()
 
     const f = ev.target
+    this.max ++
 
     const flick = {
       name: f.flickName.value,
@@ -100,8 +121,7 @@ const app = {
 
     const listItem = this.renderListItem(flick)
     this.list.appendChild(listItem)
-    console.log('increasing max variable')
-    this.max ++
+    
   },
 }
 
