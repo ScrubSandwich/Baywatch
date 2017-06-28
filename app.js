@@ -1,11 +1,20 @@
 const app = {
-  init(formSelector) {
+  init(selectors) {
+    this.max = 0
+    this.list = document.querySelector(selectors.listSelector)
+
     document
-      .querySelector(formSelector)
+      .querySelector(selectors.formSelector)
 
       //Passing the function itselft, we dont want it to just run, so no ()
       .addEventListener('submit', this.handleSubmit.bind(this))
-    this.max = 0
+  },
+
+  renderListItem(flick) {
+    const item = document.createElement('li')
+    item.textContent = flick.name
+
+    return item
   },
 
   handleSubmit(ev) {
@@ -19,9 +28,13 @@ const app = {
       id: this.max + 1,
     }
 
-    console.log(flick)
+    const listItem = this.renderListItem(flick)
+    this.list.appendChild(listItem)
     this.max ++
   },
 }
 
-app.init('form#flick-form')
+app.init({
+  formSelector: 'form#flick-form',
+  listSelector: '#flick-list',
+})
