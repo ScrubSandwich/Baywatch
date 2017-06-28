@@ -3,17 +3,57 @@ const app = {
     this.flicks = []
     this.max = 0
     this.list = document.querySelector(selectors.listSelector)
-
     document
       .querySelector(selectors.formSelector)
-
       //Passing the function itselft, we dont want it to just run, so no ()
       .addEventListener('submit', this.handleSubmit.bind(this))
+  },
+
+  //Part 2 of Homework
+  renderButton(text){
+    const button = document.createElement('button')
+    button.textContent = (text + ' ') 
+    button.className += 'likeButton'
+
+    //Add an event listener for this button
+    button.addEventListener('click', function(ev) {
+      const parentElement = ev.target.parentElement
+
+      //Change background color and button text
+      if (app.flicks[parentElement.id - 1].favorited) {
+        parentElement.style.backgroundColor = 'transparent'
+        app.flicks[parentElement.id - 1].favorited = false;
+
+        //Change the button text
+        for (let i = 0; i < parentElement.childNodes.length; i++){
+          if ((parentElement.childNodes[i].className === 'likeButton')) {
+            parentElement.childNodes[i].textContent = 'Like'
+          }
+        }
+
+      } else {
+        parentElement.style.backgroundColor = 'darksalmon'
+        app.flicks[parentElement.id - 1].favorited = true;
+
+        //Change the button text
+        for (let i = 0; i < parentElement.childNodes.length; i++){
+          if ((parentElement.childNodes[i].className === 'likeButton')) {
+            parentElement.childNodes[i].textContent = 'Unlike'
+          }
+        }    
+      }
+    })
+
+    return button
   },
 
   renderListItem(flick) {
     const item = document.createElement('li')
     item.textContent = flick.name
+    item.id = flick.id
+
+    //Add a button the the li elemebet
+    item.appendChild(this.renderButton('Like'))
 
     return item
   },
@@ -27,10 +67,15 @@ const app = {
     const flick = {
       name: f.flickName.value,
       id: this.max + 1,
+      favorited: false,
     }
+
+    //Part 1 of Homework
+    this.flicks.push(flick)
 
     const listItem = this.renderListItem(flick)
     this.list.appendChild(listItem)
+    console.log('increasing max variable')
     this.max ++
   },
 }
