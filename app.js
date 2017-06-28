@@ -18,6 +18,9 @@ const app = {
     button.addEventListener('click', function(ev) {
       const parent = ev.target.parentElement      
       parent.parentNode.removeChild(parent)
+
+      //Remove the flick from the array of flicks
+      app.flicks.splice((parent.id - 1), 1)
     })
 
     return button

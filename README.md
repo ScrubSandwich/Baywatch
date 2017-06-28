@@ -11,6 +11,7 @@ Project 2 for XTern Bootcamp 2017
 ### Bonus Credit
 
 * Add a _fav_ button to each list item that changes the appearance of that item (_e.g._ add a background color .)
+* Make the _fav_ button toggleable
 
 ###  Mega Bonus Credit
 
@@ -20,7 +21,6 @@ Project 2 for XTern Bootcamp 2017
 ### Super Mega Bonus Credit
 
 * Make sure that both of the buttons affect the array as well, not just the DOM.
-* Make the _fav_ button toggleable
 
 ### Super Mega Bonus Credit Hyper Fighting
 
