@@ -2,6 +2,8 @@ const app = {
   init(selectors) {
     this.flicks = []
     this.max = 0
+    defaultBackgroundColor = 'white'
+    likedBackgroundColor = 'grey'
     this.list = document.querySelector(selectors.listSelector)
     document
       .querySelector(selectors.formSelector)
@@ -38,7 +40,7 @@ const app = {
 
       //Change background color and button text
       if (app.flicks[parentElement.id - 1].favorited) {
-        parentElement.style.backgroundColor = 'transparent'
+        parentElement.style.backgroundColor = defaultBackgroundColor
         app.flicks[parentElement.id - 1].favorited = false;
 
         //Change the button text
@@ -49,7 +51,7 @@ const app = {
         }
 
       } else {
-        parentElement.style.backgroundColor = 'darksalmon'
+        parentElement.style.backgroundColor = likedBackgroundColor
         app.flicks[parentElement.id - 1].favorited = true;
 
         //Change the button text
@@ -68,6 +70,8 @@ const app = {
     const item = document.createElement('li')
     item.textContent = flick.name
     item.id = flick.id
+    item.style.fontSize = '2rem';
+    item.style.backgroundColor = defaultBackgroundColor;
 
     //Add the Like Button the the li element
     item.appendChild(this.renderLikeButton('Like'))

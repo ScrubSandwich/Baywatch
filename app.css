@@ -22,4 +22,23 @@
 
 #title {
   text-align: center;
+  background-color: rgba(00,8b,8b,0.9);
+}
+
+#bay {
+  font-style: italic;
+  font-size: 1.75rem;
+  font-variant: small-caps;
+  margin-right: 1rem;
+}
+
+#watch {
+  font-size: 4rem;
+  color: tomato;
+}
+
+body {
+  background-image: url("img/michael-bay.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
