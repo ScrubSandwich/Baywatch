@@ -153,7 +153,7 @@ const app = {
     this.flicks.push(flick)
 
     const listItem = this.renderListItem(flick)
-    this.list.appendChild(listItem)
+    this.list.insertBefore(listItem, this.list.firstElementChild)
     
     f.reset();
   },
