@@ -149,7 +149,7 @@ const app = {
       favorited: false,
     }
 
-    //Part 1 of Homework
+    this.flicks.unshift(flick)
     this.flicks.push(flick)
 
     const listItem = this.renderListItem(flick)
