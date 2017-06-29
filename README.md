@@ -25,3 +25,20 @@ Project 2 for XTern Bootcamp 2017
 ### Super Mega Bonus Credit Hyper Fighting
 
 * Add buttons that move a flick up and down the list (in a perfect world, this would rearrage the array)
+
+## Day 4 Homework
+
+* Finish Implementing _move up_ and _move down_.
+
+### Bonus Credit
+
+* Allow users to edit the names of existing flicks without removing them and readding them. Woudln't it be nice if we could make that `span`'s **content editable**?
+* Make sure to update the array as well
+
+### Super Mega Bonus Credit
+
+* Persist the data via `localstorage`, when you refresh the page, your flicks should still be there.
+
+### Super Mega Bonus Credit Hyper Fighting
+
+* Allow users to filter the list of flicks
