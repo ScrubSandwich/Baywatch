@@ -155,6 +155,7 @@ const app = {
     const listItem = this.renderListItem(flick)
     this.list.appendChild(listItem)
     
+    f.reset();
   },
 }
 
