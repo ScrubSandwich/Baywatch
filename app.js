@@ -88,10 +88,10 @@ const app = {
       if (app.flicks[index].favorited) {
         parentElement.style.backgroundColor = defaultBackgroundColor
         app.flicks[index].favorited = false;
-
+        
         //Change the button text
-        for (let i = 0; i < parentElement.childNodes.length; i++){
-          if ((parentElement.childNodes[i].className === 'likeButton')) {
+        for (let i = 1; i < parentElement.childNodes.length; i++){
+          if ((parentElement.childNodes[i].className.includes('likeButton'))) {
             parentElement.childNodes[i].textContent = 'Like'
           }
         }
@@ -99,10 +99,11 @@ const app = {
       } else {
         parentElement.style.backgroundColor = likedBackgroundColor
         app.flicks[index].favorited = true;
-
+        
         //Change the button text
-        for (let i = 0; i < parentElement.childNodes.length; i++){
-          if ((parentElement.childNodes[i].className === 'likeButton')) {
+        for (let i = 1; i < parentElement.childNodes.length; i++){
+          console.log('HEREEEE ' + parentElement.childNodes[i].className)
+          if ((parentElement.childNodes[i].className.includes('likeButton'))) {
             parentElement.childNodes[i].textContent = 'Unlike'
           }
         }    
