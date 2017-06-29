@@ -57,8 +57,9 @@
 body {
   background-image: url("img/michael-bay.jpg");
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: cover;
   background-attachment: fixed;
+  padding-top: 1rem;
 }
 
 ul {
