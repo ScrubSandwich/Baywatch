@@ -1,6 +1,6 @@
 .likeButton {
-  border-radius: 0.5rem;
-  margin: 0rem;
+  border-radius: 3.5rem;
+  margin: 0rem 0.1rem 0rem 0.5rem;
   text-align: center;
   font-size: 1rem;
   float: right;
@@ -8,13 +8,31 @@
 
 .removeButton {
   background-color: firebrick;
-  border: crimson;
-  border-style: solid;
-  border-radius: 0.5rem;
-  margin: 0rem;
+  border-radius: 3.5rem;
+  margin: 0rem 0.5rem ;
   text-align: center;
   font-size: 1rem;
   float: right;
+}
+
+.downButton {
+  float: right;
+  border-radius: 3.5rem;
+  margin: 0rem 0.5rem ;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.upButton {
+  float: right;
+  border-radius: 3.5rem;
+  margin: 0rem 0.5rem ;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.round {
+  border-radius: 3.5rem !important;
 }
 
 #title {

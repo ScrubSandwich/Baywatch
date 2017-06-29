@@ -11,6 +11,32 @@ const app = {
       .addEventListener('submit', this.handleSubmit.bind(this))
   },
 
+  renderUpButton() {
+    const button = document.createElement('button')
+    button.textContent = 'Move Up'
+    button.className += 'success button upButton'
+
+    //Add an event listener for this button
+    button.addEventListener('click', function(ev) {
+
+    })
+
+    return button
+  },
+
+  renderDownButton() {
+    const button = document.createElement('button')
+    button.textContent = 'Move Down'
+    button.className += 'success button downButton'
+
+    //Add an event listener for this button
+    button.addEventListener('click', function(ev) {
+      
+    })
+
+    return button
+  },
+
   getIndexOfFlick(parentElement) {
     let index = -1
 
@@ -99,6 +125,12 @@ const app = {
 
     //Add the Remove Button to the li element
     item.appendChild(this.renderRemoveButton('Remove'))
+
+    //Add the Down Button to the li element
+    item.appendChild(this.renderDownButton())
+
+    //Add the Up Button to the li element
+    item.appendChild(this.renderUpButton())
 
     return item
   },
