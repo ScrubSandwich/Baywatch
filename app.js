@@ -11,27 +11,37 @@ const app = {
       .addEventListener('submit', this.handleSubmit.bind(this))
   },
 
-  renderUpButton() {
+  renderUpButton(ev) {
     const button = document.createElement('button')
     button.textContent = 'Move Up'
     button.className += 'success button upButton'
 
     //Add an event listener for this button
     button.addEventListener('click', function(ev) {
+      const ulList = ev.target.parentElement.parentElement
+      const currentListItem = ev.target.parentElement
 
+      ulList.insertBefore(currentListItem, currentListItem.previousElementSibling)
     })
 
     return button
   },
 
-  renderDownButton() {
+  renderDownButton(ev) {
     const button = document.createElement('button')
     button.textContent = 'Move Down'
     button.className += 'success button downButton'
 
     //Add an event listener for this button
     button.addEventListener('click', function(ev) {
-      
+      try {
+        const ulList = ev.target.parentElement.parentElement
+        const currentListItem = ev.target.parentElement
+
+        ulList.insertBefore(currentListItem.nextElementSibling, currentListItem)
+      } catch (ex) {
+        //Do nothing
+      }
     })
 
     return button
@@ -77,12 +87,8 @@ const app = {
     //Add an event listener for this button
     button.addEventListener('click', function(ev) {
       const parentElement = ev.target.parentElement
-      console.log('like button clicked. parentElement id= ' + parentElement.id)
-      console.log(parentElement)
 
       let index = app.getIndexOfFlick(parentElement)
-      console.log('parent element id: ' + parentElement.id)
-      console.log('parent element id array location: ' + index)
 
       //Change background color and button text
       if (app.flicks[index].favorited) {
@@ -102,7 +108,6 @@ const app = {
         
         //Change the button text
         for (let i = 1; i < parentElement.childNodes.length; i++){
-          console.log('HEREEEE ' + parentElement.childNodes[i].className)
           if ((parentElement.childNodes[i].className.includes('likeButton'))) {
             parentElement.childNodes[i].textContent = 'Unlike'
           }
