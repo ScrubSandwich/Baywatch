@@ -2,8 +2,8 @@ const app = {
   init(selectors) {
     this.flicks = []
     this.max = -1
-    defaultBackgroundColor = 'white'
-    likedBackgroundColor = 'grey'
+    defaultBackgroundColor = 'cadetblue'
+    likedBackgroundColor = 'deeppink'
     this.list = document.querySelector(selectors.listSelector)
     document
       .querySelector(selectors.formSelector)
