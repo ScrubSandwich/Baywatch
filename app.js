@@ -4,6 +4,7 @@ const app = {
     this.max = -1
     defaultBackgroundColor = 'cadetblue'
     likedBackgroundColor = 'deeppink'
+
     this.list = document.querySelector(selectors.listSelector)
     document
       .querySelector(selectors.formSelector)
@@ -78,7 +79,6 @@ const app = {
     return button
   },
 
-  //Part 2 of Homework
   renderLikeButton(text) {
     const button = document.createElement('button')
     button.textContent = (text) 
@@ -120,11 +120,16 @@ const app = {
 
   renderListItem(flick) {
     const item = document.createElement('li')
-    item.textContent = flick.name
     item.id = flick.id
     item.style.fontSize = '2rem'
     item.style.backgroundColor = defaultBackgroundColor
     item.style.borderRadius = '6px'
+    
+    const text = document.createElement('span')
+    text.textContent = flick.name
+    text.contentEditable = true
+
+    item.appendChild(text)
 
     //Add the Like Button the the li element
     item.appendChild(this.renderLikeButton('Like'))
