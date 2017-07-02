@@ -8,22 +8,20 @@ const app = {
       //Passing the function itselft, we dont want it to just run, so no ()
       .addEventListener('submit', this.handleSubmit.bind(this))
 
-    //First thing: Check localstorage to see if there is flicks already there
     this.checkLocalStorage()
 
     this.max = -1
     defaultBackgroundColor = 'cadetblue'
-    likedBackgroundColor = 'deeppink'
-
-    
+    likedBackgroundColor = 'deeppink'    
   },
 
   checkLocalStorage() {
     const data = JSON.parse(localStorage.getItem("data"))
-    const len = localStorage.getItem("len") + 1
+    const len = parseInt(localStorage.getItem("len"))
+    debugger
 
     if (JSON.parse(localStorage.getItem("data"))){
-      for (var i = 0; i < len; i++) {        
+      for (var i = len; i > -1; i--) {        
         const listItem = app.renderListItem(data[i])
         this.list.insertBefore(listItem, this.list.firstElementChild)
       }
