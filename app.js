@@ -1,15 +1,33 @@
 const app = {
   init(selectors) {
     this.flicks = []
-    this.max = -1
-    defaultBackgroundColor = 'cadetblue'
-    likedBackgroundColor = 'deeppink'
 
     this.list = document.querySelector(selectors.listSelector)
     document
       .querySelector(selectors.formSelector)
       //Passing the function itselft, we dont want it to just run, so no ()
       .addEventListener('submit', this.handleSubmit.bind(this))
+
+    //First thing: Check localstorage to see if there is flicks already there
+    this.checkLocalStorage()
+
+    this.max = -1
+    defaultBackgroundColor = 'cadetblue'
+    likedBackgroundColor = 'deeppink'
+
+    
+  },
+
+  checkLocalStorage() {
+    const data = JSON.parse(localStorage.getItem("data"))
+    const len = localStorage.getItem("len") + 1
+
+    if (JSON.parse(localStorage.getItem("data"))){
+      for (var i = 0; i < len; i++) {        
+        const listItem = app.renderListItem(data[i])
+        this.list.insertBefore(listItem, this.list.firstElementChild)
+      }
+    }
   },
 
   renderUpButton(ev) {
@@ -122,7 +140,7 @@ const app = {
     const item = document.createElement('li')
     item.id = flick.id
     item.style.fontSize = '2rem'
-    item.style.backgroundColor = defaultBackgroundColor
+    item.style.backgroundColor = 'cadetblue'
     item.style.borderRadius = '6px'
     
     const text = document.createElement('span')
@@ -164,7 +182,11 @@ const app = {
 
     const listItem = this.renderListItem(flick)
     this.list.insertBefore(listItem, this.list.firstElementChild)
-    
+
+    const r = this.flicks.pop() ////////////////////////////////////////////////////////// Dangerous Code here   
+    localStorage.setItem("data", JSON.stringify(app.flicks))
+    localStorage.setItem("len", this.max)
+
     f.reset();
   },
 }
